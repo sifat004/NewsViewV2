@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="screen1">#00838F</color>
+    <color name="screen2">#f2ea4f</color>
+    <color name="screen3">#6A1B9A</color>
+    <color name="inactive">#79bebcbc</color>
+    <color name="active">#f5a7a7a7</color>
+
+
+
+
 </resources>
