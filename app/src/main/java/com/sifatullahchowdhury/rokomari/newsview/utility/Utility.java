@@ -17,10 +17,11 @@ import com.sifatullahchowdhury.rokomari.newsview.applicaton.MyApplication;
 
 public class Utility {
 
+    public  static Context APP_CONTEXT = MyApplication.getAppContext();
+    public static String NEWS_API_KEY = getStringResource(R.string.api_key);
+    public static String getStringResource(int id){return APP_CONTEXT.getString(id);}
 
     public static void aboutDialog(Context context) {
-
-
 
 
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();

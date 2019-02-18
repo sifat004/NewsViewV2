@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.sifatullahchowdhury.rokomari.newsview.MainActivity;
 import com.sifatullahchowdhury.rokomari.newsview.R;
+import com.sifatullahchowdhury.rokomari.newsview.home_activity.HomeActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -19,7 +19,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(1500);
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
                     startActivity(intent);
                     finish();
                 } catch (InterruptedException e) {

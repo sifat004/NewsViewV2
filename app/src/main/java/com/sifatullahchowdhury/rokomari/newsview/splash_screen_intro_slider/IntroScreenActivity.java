@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sifatullahchowdhury.rokomari.newsview.MainActivity;
+import com.sifatullahchowdhury.rokomari.newsview.home_activity.HomeActivity;
 import com.sifatullahchowdhury.rokomari.newsview.preference.PreferenceManager;
 import com.sifatullahchowdhury.rokomari.newsview.R;
 
@@ -132,7 +132,7 @@ public class IntroScreenActivity extends AppCompatActivity {
 
     private void launchMain() {
         PreferenceManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(IntroScreenActivity.this, MainActivity.class));
+        startActivity(new Intent(IntroScreenActivity.this, HomeActivity.class));
         finish();
     }
 

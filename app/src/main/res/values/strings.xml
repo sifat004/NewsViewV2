@@ -11,4 +11,9 @@
     <string name="home">Home</string>
     <string name="about_text">Rokomari</string>
     <string name="ok">Ok</string>
+    <string name="api_key">d220b14fbaee4d4b89932764667da62d</string>
+    <string name="UK">gb</string>
+    <string name="latest_news">Latest News</string>
+    <string name="communication_error">could not connect</string>
+    <string name="US">us</string>
 </resources>
