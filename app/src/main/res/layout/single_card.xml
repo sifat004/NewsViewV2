@@ -1,91 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/background"
+    android:layout_width="240dp"
+    android:layout_height="220dp"
+    android:layout_margin="10dp"
+    card_view:cardBackgroundColor="@color/gray"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="0dp"
     >
 
-
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/home"
-        android:id="@+id/article_img"
-
-        />
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/article_img"
-        android:textSize="@dimen/article_title"
-        android:fontFamily="@font/lemon_milkbold"
-        android:id="@+id/article_title"
-        android:text="Title"
-        android:layout_alignParentLeft="true"
-
-        android:layout_alignParentStart="true" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        android:id="@+id/article_date_author"
-        android:layout_below="@+id/article_title"
+        android:layout_height="match_parent"
+        android:padding="0dp"
 
         >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/article_date"
-            android:fontFamily="@font/lemon_milkbold"
-            android:id="@+id/article_author"
-            android:gravity="left"
-            android:layout_gravity="left"
 
-            />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="@dimen/article_date"
-            android:fontFamily="@font/lemon_milkbold"
-            android:id="@+id/article_date"
-            android:layout_gravity="right"
-            android:gravity="right"
+
+        <ImageView
+            android:id="@+id/iv_article_img"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/home"
 
             />
 
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_article_title"
+            style="@style/Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:maxLines="2"
+            android:minLines="2"
+
+            android:layout_below="@+id/iv_article_img"
+            android:text="Title" />
+
+        <LinearLayout
+            android:id="@+id/article_date_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_article_title"
+            android:orientation="horizontal"
+            android:weightSum="3"
+
+            >
+
+            <TextView
+                android:id="@+id/tv_article_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="2"
+                android:gravity="left"
+                style="@style/Author_date"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_article_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:gravity="right"
+                style="@style/Author_date"
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/article_date_author"
-        android:textSize="@dimen/article_desc"
-        android:fontFamily="@font/lemon_milkbold"
-        android:id="@+id/article_desc"
-        android:layout_alignParentLeft="true"
+                />
+
+        </LinearLayout>
 
 
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/article_desc"
-        android:textSize="@dimen/article_desc"
-        android:fontFamily="@font/lemon_milkbold"
-        android:id="@+id/article_source"
-        android:layout_alignParentLeft="true"
+        <TextView
+            android:id="@+id/tv_article_desc"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/article_date_author"
+            android:fontFamily="@font/lemon_milkbold"
 
 
-        android:layout_alignParentStart="true" />
+            android:textSize="@dimen/article_desc" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_article_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tv_article_desc"
+            style="@style/Author_date"
+   />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

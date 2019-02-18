@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sifatullahchowdhury.rokomari.newsview">
-    <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".applicaton.MyApplication"
@@ -11,10 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".splash_screen_intro_slider.IntroScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-
-            >
+        <activity
+            android:name=".splash_screen_intro_slider.IntroScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,9 +26,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".splash_screen_intro_slider.SplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ShowArticleActivity"></activity>
     </application>
 
 </manifest>

@@ -9,8 +9,7 @@
     <color name="screen3">#6A1B9A</color>
     <color name="inactive">#79bebcbc</color>
     <color name="active">#f5a7a7a7</color>
-
-
+    <color name="gray">#49cecaca</color>
 
 
 </resources>

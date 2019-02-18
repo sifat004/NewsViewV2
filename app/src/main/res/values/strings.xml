@@ -17,4 +17,8 @@
     <string name="communication_error">could not connect</string>
     <string name="US">us</string>
     <string name="gurdian">the-guardian-au</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="content_url">cobtent_url</string>
+    <string name="load_the_article_on_your_browser">Load the article on your browser</string>
 </resources>

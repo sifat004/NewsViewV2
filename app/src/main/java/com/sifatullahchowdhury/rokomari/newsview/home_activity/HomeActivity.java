@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
@@ -29,16 +31,20 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
     private static final String TAG = "HomeActivity";
     DrawerLayout mDrawerLayout;
 
+
     private ArticleListPresenter articleListPresenter;
     private RecyclerView rvArticles;
+    private RecyclerView rvArticles2;
+
     private List<Article> articles;
     private ArticleListRecyclerAdapter rvAdapter;
     private ProgressBar pbLoading;
 
 
-    private GridLayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager2;
 
-
+    private ActionBarDrawerToggle mDrawerToggle;
 
 
     @Override
@@ -46,7 +52,10 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       getSupportActionBar().setTitle(getString(R.string.latest_news));
+        getSupportActionBar().setTitle(getString(R.string.latest_news));
+        initUI();
+        drawer();
+
         articles = new ArrayList<>();
 
 
@@ -58,13 +67,11 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
     private void initUI() {
 
         rvArticles = findViewById(R.id.rv_articles);
+        rvArticles2 = findViewById(R.id.rv_articles_2);
 
-        rvAdapter = new ArticleListRecyclerAdapter( articles,this);
 
-        mLayoutManager = new GridLayoutManager(this, 2);
-        rvArticles.setLayoutManager(mLayoutManager);
-        rvArticles.setItemAnimator(new DefaultItemAnimator());
-        rvArticles.setAdapter(rvAdapter);
+
+
         pbLoading = findViewById(R.id.pb_loading);
 
 
@@ -76,22 +83,39 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
     @Override
     public void showProgress() {
 
-//        pbLoading.setVisibility(View.GONE);
+       pbLoading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
 
-     //  pbLoading.setVisibility(View.GONE);
+       pbLoading.setVisibility(View.GONE);
     }
 
     @Override
     public void setDataToRecyclerView(List<Article> articles) {
 
+
+
         this.articles.addAll(articles);
+        mLayoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        mLayoutManager2
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rvAdapter = new ArticleListRecyclerAdapter( articles,this);
+
+        rvArticles.setLayoutManager(mLayoutManager);
+        rvArticles.setItemAnimator(new DefaultItemAnimator());
+        rvArticles.setAdapter(rvAdapter);
+
+
+        rvArticles2.setLayoutManager(mLayoutManager2);
+        rvArticles2.setItemAnimator(new DefaultItemAnimator());
+        rvArticles2.setAdapter(rvAdapter);
+
         Log.e(TAG, String.valueOf(articles.size()));
 
-        initUI();
 
 
 
@@ -113,39 +137,34 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int id = menuItem.getItemId();
 
-
-        if (id == R.id.nav_home) {
-
+        if (mDrawerToggle.onOptionsItemSelected(menuItem)) {
             return true;
-
         }
+        int id=menuItem.getItemId();
+        switch (id) {
+            case R.id.nav_home:
 
-        else if (id==R.id.nav_about){
-            mDrawerLayout.closeDrawers();
-            Utility.aboutDialog(this);
-
-            return true;
-
-
-        }
-
-        else if (id==R.id.nav_exit){
-            try {
+                return true;
+            case R.id.nav_about:
                 mDrawerLayout.closeDrawers();
-            }
-            catch (Exception e){}
+                Utility.aboutDialog(this);
 
-            finish();
-            return true;
+                return true;
+            case R.id.nav_exit:
+                try {
+                    mDrawerLayout.closeDrawers();
+                } catch (Exception e) {
+                }
+
+                finish();
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(menuItem);
 
         }
-        else
-            return super.onOptionsItemSelected(menuItem);
-
-
-
 
 
     }
@@ -153,6 +172,25 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
 
     void drawer() {
         mDrawerLayout =  findViewById(R.id.drawer_layout);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.string.drawer_open, R.string.drawer_close) {
+
+            public void onDrawerClosed(View view) {
+
+
+
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                mDrawerToggle.setDrawerIndicatorEnabled(true);
+
+
+            }
+        };
+
+        mDrawerToggle.syncState();
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+
         NavigationView navigationView =  findViewById(R.id.nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);

@@ -61,7 +61,7 @@ public class Article {
     }
 
     public String getPublishedAt() {
-        return publishedAt;
+        return publishedAt.substring(0,10);
     }
 
     public String getContent() {
