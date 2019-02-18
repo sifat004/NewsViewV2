@@ -28,7 +28,7 @@ public class ArticleListModel implements ArticleListContract.Model {
 
         ApiInterface apiInterface= ApiClient.getClient().create(ApiInterface.class);
 
-        Call<ArticleListResponse> latestArticles = apiInterface.getLatestNewsOfCountry(Utility.NEWS_API_KEY,countryCode);
+        Call<ArticleListResponse> latestArticles = apiInterface.getLatestNewsOfCountry(countryCode,Utility.NEWS_API_KEY);
 
         latestArticles.enqueue(new Callback<ArticleListResponse>() {
             @Override
@@ -55,14 +55,15 @@ public class ArticleListModel implements ArticleListContract.Model {
 
         ApiInterface apiInterface= ApiClient.getClient().create(ApiInterface.class);
 
-        Call<ArticleListResponse> latestArticles = apiInterface.getLatestNewsOfSource(Utility.NEWS_API_KEY,source);
+        Call<ArticleListResponse> latestArticles = apiInterface.getLatestNewsOfSource(source,Utility.NEWS_API_KEY);
 
         latestArticles.enqueue(new Callback<ArticleListResponse>() {
             @Override
             public void onResponse(Call<ArticleListResponse> call, Response<ArticleListResponse> response) {
 
+                Log.e(TAG, "response " + response);
+
                 List<Article> articles= response.body().getArticles();
-                Log.d(TAG, "Number of articles received: " + articles.size());
                 onFinishedListener.onFinished(articles);
             }
 
@@ -82,7 +83,7 @@ public class ArticleListModel implements ArticleListContract.Model {
 
         ApiInterface apiInterface= ApiClient.getClient().create(ApiInterface.class);
 
-        Call<ArticleListResponse> latestArticles = apiInterface.getEverythingAboutTopic(Utility.NEWS_API_KEY,topic);
+        Call<ArticleListResponse> latestArticles = apiInterface.getEverythingAboutTopic(topic,Utility.NEWS_API_KEY);
 
         latestArticles.enqueue(new Callback<ArticleListResponse>() {
             @Override

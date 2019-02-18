@@ -1,7 +1,6 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
     <dimen name="intro_text">40dp</dimen>
-    <dimen name="article_title">30dp</dimen>
-    <dimen name="article_desc">25</dimen>
-    <dimen name="article_date">5</dimen>
+    <dimen name="article_title">15dp</dimen>
+    <dimen name="article_desc">10dp</dimen>
+    <dimen name="article_date">5dp</dimen>
 </resources>

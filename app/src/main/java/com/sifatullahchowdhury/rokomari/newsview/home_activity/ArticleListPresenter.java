@@ -1,5 +1,7 @@
 package com.sifatullahchowdhury.rokomari.newsview.home_activity;
 
+import android.util.Log;
+
 import com.sifatullahchowdhury.rokomari.newsview.R;
 import com.sifatullahchowdhury.rokomari.newsview.model.Article;
 import com.sifatullahchowdhury.rokomari.newsview.utility.Utility;
@@ -22,9 +24,10 @@ public class ArticleListPresenter implements ArticleListContract.Presenter,Artic
     }
 
     @Override
-    public void onFinished(List<Article> movieArrayList) {
+    public void onFinished(List<Article> articles) {
 
-        articleListView.setDataToRecyclerView(movieArrayList);
+        Log.e("presenter", String.valueOf(articles.size()));
+        articleListView.setDataToRecyclerView(articles);
         if (articleListView != null) {
             articleListView.hideProgress();
         }
@@ -54,6 +57,8 @@ public class ArticleListPresenter implements ArticleListContract.Presenter,Artic
         if (articleListView != null) {
             articleListView.showProgress();
         }
-        articleListModel.getLatestArticlesOfCountry(this, Utility.getStringResource(R.string.US));
+       // articleListModel.getLatestArticlesOfCountry(this, Utility.getStringResource(R.string.US));
+        articleListModel.getLatestArticlesOfSource(this, Utility.getStringResource(R.string.gurdian));
+
     }
 }
