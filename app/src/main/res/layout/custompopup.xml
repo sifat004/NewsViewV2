@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardBackgroundColor="#49cecaca"
-    card_view:cardCornerRadius="10dp"
     card_view:cardElevation="0dp"
     >
 

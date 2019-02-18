@@ -13,10 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
 import com.sifatullahchowdhury.rokomari.newsview.R;
 import com.sifatullahchowdhury.rokomari.newsview.ShowArticleActivity;
 import com.sifatullahchowdhury.rokomari.newsview.model.Article;
@@ -28,13 +28,13 @@ import java.util.List;
  * Created by Sifat Ullah on 2/18/2019.
  */
 
-public class ArticleListRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
+public class ArticleCardRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
 
     private List<Article> articles;
     private Context mContext;
 
-    public ArticleListRecyclerAdapter(List<Article> articles, Context mContext) {
+    public ArticleCardRecyclerAdapter(List<Article> articles, Context mContext) {
         this.articles = articles;
         this.mContext = mContext;
         Log.e("Adapter", String.valueOf(articles.size()));
@@ -44,7 +44,7 @@ public class ArticleListRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(mContext)
-                .inflate(R.layout.single_list_item, viewGroup, false);
+                .inflate(R.layout.single_card, viewGroup, false);
 
 
         return new ViewHolder(view);
@@ -89,7 +89,7 @@ public class ArticleListRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
 
         TextView articleTitle, publishedDate, author,source,desc;
         ImageView articleImg;
-        RelativeLayout background;
+        CardView background;
 
         ViewHolder(View itemView) {
             super(itemView);

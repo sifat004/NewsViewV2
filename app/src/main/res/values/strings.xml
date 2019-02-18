@@ -9,7 +9,7 @@
     <string name="exit">Exit</string>
     <string name="about">About</string>
     <string name="home">Home</string>
-    <string name="about_text">Rokomari</string>
+    <string name="about_text">App name: NewsView \nVersion:1 \nMade by: Rokomari.com</string>
     <string name="ok">Ok</string>
     <string name="api_key">d220b14fbaee4d4b89932764667da62d</string>
     <string name="UK">gb</string>
@@ -21,4 +21,9 @@
     <string name="drawer_close">close</string>
     <string name="content_url">cobtent_url</string>
     <string name="load_the_article_on_your_browser">Load the article on your browser</string>
+    <string name="google_sign_in">Log in</string>
+    <string name="google_sign_out">Log out</string>
+    <string name="logged_in_as">Logged in as:</string>
+    <string name="not_logged_in">Not logged in</string>
+    <string name="logged_out">Logged out</string>
 </resources>

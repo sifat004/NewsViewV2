@@ -26,6 +26,18 @@
 
     <item
 
+        android:id="@+id/nav_google_sign"
+        android:icon="@drawable/google"
+        android:title="@string/google_sign_in"/>
+
+    <item
+
+        android:id="@+id/nav_google_sign_out"
+        android:icon="@drawable/google"
+        android:title="@string/google_sign_out"/>
+
+    <item
+
         android:id="@+id/nav_exit"
         android:icon="@drawable/exit"
         android:title="@string/exit"/>

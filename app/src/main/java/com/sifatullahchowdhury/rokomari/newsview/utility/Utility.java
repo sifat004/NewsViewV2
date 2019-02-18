@@ -26,13 +26,13 @@ public class Utility {
     public static String NEWS_API_KEY = getStringResource(R.string.api_key);
     public static String getStringResource(int id){return APP_CONTEXT.getString(id);}
 
-    public static void aboutDialog(Context context) {
+    public static void textDialog(Context context,String title,String content,int icon) {
 
 
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-                alertDialog.setTitle(R.string.about);
-                alertDialog.setIcon(R.drawable.about);
-                alertDialog.setMessage(context.getResources().getString(R.string.about_text));
+                alertDialog.setTitle(title);
+                alertDialog.setIcon(icon);
+                alertDialog.setMessage(content);
                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, context.getString(R.string.ok),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

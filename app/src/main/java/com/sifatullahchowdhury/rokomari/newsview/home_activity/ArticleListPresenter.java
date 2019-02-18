@@ -57,8 +57,8 @@ public class ArticleListPresenter implements ArticleListContract.Presenter,Artic
         if (articleListView != null) {
             articleListView.showProgress();
         }
-       // articleListModel.getLatestArticlesOfCountry(this, Utility.getStringResource(R.string.US));
-        articleListModel.getLatestArticlesOfSource(this, Utility.getStringResource(R.string.gurdian));
+        articleListModel.getLatestArticlesOfCountry(this, Utility.getStringResource(R.string.US));
+        //articleListModel.getLatestArticlesOfSource(this, Utility.getStringResource(R.string.gurdian));
 
     }
 }
