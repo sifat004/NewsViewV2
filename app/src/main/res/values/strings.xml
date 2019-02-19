@@ -9,7 +9,7 @@
     <string name="exit">Exit</string>
     <string name="about">About</string>
     <string name="home">Home</string>
-    <string name="about_text">App name: NewsView \nVersion:1 \nMade by: Rokomari.com</string>
+    <string name="about_text">App name: NewsViews \nVersion:1 \nMade for: Rokomari.com \nDeveloper: Sifat Ullah Chowdhury \nEmail: sif.sifat24@gmail.com</string>
     <string name="ok">Ok</string>
     <string name="api_key">d220b14fbaee4d4b89932764667da62d</string>
     <string name="UK">gb</string>
@@ -36,4 +36,13 @@
     <string name="spo">spo</string>
     <string name="mir">mir</string>
     <string name="cnn">cnn</string>
+    <string name="give_a_number">Give a number</string>
+    <string name="go">Go</string>
+    <string name="give_a_date">Give a date</string>
+    <string name="month">Month</string>
+    <string name="number">Number</string>
+    <string name="date">Date</string>
+    <string name="want_to_see_a_trivia">Want to see a trivia? Choose one</string>
+    <string name="your_trivia">Your trivia</string>
+    <string name="news">News</string>
 </resources>

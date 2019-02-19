@@ -1,6 +1,10 @@
 package com.sifatullahchowdhury.rokomari.newsview.home_activity;
 
 
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.sifatullahchowdhury.rokomari.newsview.model.Article;
 
 import java.util.List;
@@ -30,13 +34,23 @@ public interface ArticleListContract {
 
     interface View {
 
+
         void showProgress();
 
         void hideProgress();
 
         void setDataToRecyclerView(List<Article> articles);
 
+        void loadArticles();
+
         void onResponseFailure(Throwable throwable);
+
+        void finish();
+
+        void signIn(GoogleSignInClient mGoogleSignInClient);
+
+
+        void signOut();
 
     }
 
@@ -45,7 +59,11 @@ public interface ArticleListContract {
         void onDestroy();
 
 
-        void requestDataFromServer(int type,String param);
+        void requestNewsAboutCountry(String param);
+        void requestNewsFromSpecificSource(String param);
+        void requestNewsOnSpecificTopic(String param);
+
+
 
     }
 }

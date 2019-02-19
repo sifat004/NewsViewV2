@@ -10,10 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".splash_screen_intro_slider.PrimarySplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,11 +26,27 @@
         <activity
             android:name=".home_activity.HomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+
+            />
         <activity
             android:name=".splash_screen_intro_slider.SecondarySplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".show_full_article_activity.ShowArticleActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+
+            />
+        <activity
+            android:name=".show_full_article_activity.ShowArticleActivity"
+            android:screenOrientation="portrait"
+
+            />
+        <activity
+            android:name=".trivia_activity.TriviaActivity"
+            android:screenOrientation="portrait"
+
+            />
+
     </application>
 
 </manifest>

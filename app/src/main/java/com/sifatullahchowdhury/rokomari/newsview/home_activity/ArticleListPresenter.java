@@ -50,26 +50,31 @@ public class ArticleListPresenter implements ArticleListContract.Presenter,Artic
         this.articleListView = null;
     }
 
-
     @Override
-    public void requestDataFromServer(int type,String param) {
+    public void requestNewsAboutCountry(String param) {
 
-        if (articleListView != null) {
-            articleListView.showProgress();
-        }
-
-
-        if (type==Utility.NEWS_OF_COUNTRY)
+        articleListView.showProgress();
         articleListModel.getLatestArticlesOfCountry(this, param);
 
-        else if (type==Utility.NEWS_OF_SOURCE)
+    }
+
+    @Override
+    public void requestNewsFromSpecificSource(String param) {
+        articleListView.showProgress();
+
         articleListModel.getLatestArticlesOfSource(this, param);
 
-        else if (type==Utility.NEWS_OF_TOPIC)
-            articleListModel.getArticlesOfTopic(this, param);
+    }
 
-        else articleListModel.getLatestArticlesOfCountry(this, Utility.getStringResource(R.string.US));
+    @Override
+    public void requestNewsOnSpecificTopic(String param) {
 
+        articleListView.showProgress();
+
+        articleListModel.getArticlesOfTopic(this, param);
 
     }
+
+
+
 }

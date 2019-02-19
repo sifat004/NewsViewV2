@@ -13,7 +13,7 @@ import retrofit2.http.Query;
  */
 
 
-public interface ApiInterface
+public interface NewsApiInterface
 {
 
 
