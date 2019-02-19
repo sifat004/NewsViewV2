@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.sifatullahchowdhury.rokomari.newsview.R;
 import com.sifatullahchowdhury.rokomari.newsview.home_activity.HomeActivity;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SecondarySplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

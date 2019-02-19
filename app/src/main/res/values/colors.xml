@@ -10,6 +10,9 @@
     <color name="inactive">#79bebcbc</color>
     <color name="active">#f5a7a7a7</color>
     <color name="gray">#49cecaca</color>
+    <color name="red">#dfed2f2f</color>
+    <color name="green">#df0d7807</color>
+
 
 
 </resources>

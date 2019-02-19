@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sifatullahchowdhury.rokomari.newsview.R;
-import com.sifatullahchowdhury.rokomari.newsview.ShowArticleActivity;
+import com.sifatullahchowdhury.rokomari.newsview.show_full_article_activity.ShowArticleActivity;
 import com.sifatullahchowdhury.rokomari.newsview.model.Article;
 import com.sifatullahchowdhury.rokomari.newsview.utility.Utility;
 

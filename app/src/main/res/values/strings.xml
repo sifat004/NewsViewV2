@@ -26,4 +26,14 @@
     <string name="logged_in_as">Logged in as:</string>
     <string name="not_logged_in">Not logged in</string>
     <string name="logged_out">Logged out</string>
+    <string name="could_not_log">Could not log in</string>
+    <string name="sports">sports</string>
+    <string name="tech">tech</string>
+    <string name="mirror">mirror</string>
+    <string name="uk">UK</string>
+    <string name="Tech">Tech</string>
+    <string name="Guardian">Guardian</string>
+    <string name="spo">spo</string>
+    <string name="mir">mir</string>
+    <string name="cnn">cnn</string>
 </resources>

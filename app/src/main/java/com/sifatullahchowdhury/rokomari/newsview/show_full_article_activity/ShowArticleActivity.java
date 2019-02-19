@@ -1,9 +1,11 @@
-package com.sifatullahchowdhury.rokomari.newsview;
+package com.sifatullahchowdhury.rokomari.newsview.show_full_article_activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
+
+import com.sifatullahchowdhury.rokomari.newsview.R;
 
 public class ShowArticleActivity extends AppCompatActivity {
 

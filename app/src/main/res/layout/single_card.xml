@@ -17,93 +17,113 @@
 
         >
 
+        <View
+            android:id="@+id/anchor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true" />
+
 
         <ImageView
             android:id="@+id/iv_article_img"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/anchor"
             android:scaleType="fitXY"
             android:src="@drawable/home"
 
             />
 
 
-        <TextView
-            android:id="@+id/tv_article_title"
-            style="@style/Headline"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:maxLines="2"
-            android:minLines="2"
+            android:orientation="vertical"
+            android:layout_below="@+id/anchor"
+            android:layout_alignParentBottom="true"
 
-            android:layout_below="@+id/iv_article_img"
-            android:text="Title" />
-
-        <LinearLayout
-            android:id="@+id/article_date_author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_article_title"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
 
             >
 
             <TextView
-                android:id="@+id/tv_article_author"
-                android:layout_width="0dp"
+                android:id="@+id/tv_article_title"
+                style="@style/Headline"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_weight="2"
-                android:gravity="left"
-                style="@style/Author_date"
 
-                />
+                android:maxLines="2"
+                android:minLines="2"
+
+                android:text="Title" />
+
+            <LinearLayout
+                android:id="@+id/article_date_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_article_title"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+
+                >
+
+                <TextView
+                    android:id="@+id/tv_article_author"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    style="@style/Author_date"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_article_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    style="@style/Author_date"
+
+
+                    />
+
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/tv_article_date"
-                android:layout_width="0dp"
+                android:id="@+id/tv_article_desc"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/article_date_author"
+                android:fontFamily="@font/lemon_milkbold"
+
+
+
+                android:textSize="@dimen/article_desc" />
+
+            <TextView
+                android:id="@+id/tv_article_source"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                android:gravity="right"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_article_desc"
                 style="@style/Author_date"
 
-
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 />
-
         </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/tv_article_desc"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/article_date_author"
-            android:fontFamily="@font/lemon_milkbold"
-
-
-
-            android:textSize="@dimen/article_desc" />
-
-        <TextView
-            android:id="@+id/tv_article_source"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/tv_article_desc"
-            style="@style/Author_date"
-
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-   />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

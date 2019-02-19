@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import com.sifatullahchowdhury.rokomari.newsview.R;
-import com.sifatullahchowdhury.rokomari.newsview.ShowArticleActivity;
+import com.sifatullahchowdhury.rokomari.newsview.show_full_article_activity.ShowArticleActivity;
 import com.sifatullahchowdhury.rokomari.newsview.model.Article;
 import com.sifatullahchowdhury.rokomari.newsview.utility.Utility;
 

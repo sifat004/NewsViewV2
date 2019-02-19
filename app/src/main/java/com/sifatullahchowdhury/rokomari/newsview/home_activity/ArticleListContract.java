@@ -45,7 +45,7 @@ public interface ArticleListContract {
         void onDestroy();
 
 
-        void requestDataFromServer();
+        void requestDataFromServer(int type,String param);
 
     }
 }

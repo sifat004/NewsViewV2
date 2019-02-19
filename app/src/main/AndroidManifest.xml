@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".splash_screen_intro_slider.IntroScreenActivity"
+            android:name=".splash_screen_intro_slider.PrimarySplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +25,9 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".splash_screen_intro_slider.SplashScreenActivity"
+            android:name=".splash_screen_intro_slider.SecondarySplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ShowArticleActivity"></activity>
+        <activity android:name=".show_full_article_activity.ShowArticleActivity"></activity>
     </application>
 
 </manifest>

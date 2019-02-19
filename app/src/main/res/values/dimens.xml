@@ -8,4 +8,5 @@
     <dimen name="article_title_popup">20dp</dimen>
     <dimen name="article_desc_popup">15dp</dimen>
     <dimen name="article_date_popup">12dp</dimen>
+    <dimen name="btn_radius">40dp</dimen>
 </resources>

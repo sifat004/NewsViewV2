@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sifatullahchowdhury.rokomari.newsview.splash_screen_intro_slider.SplashScreenActivity">
+    tools:context="com.sifatullahchowdhury.rokomari.newsview.splash_screen_intro_slider.SecondarySplashScreenActivity">
 
 
      <ImageView

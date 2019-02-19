@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,22 +34,36 @@ import com.sifatullahchowdhury.rokomari.newsview.R;
 import com.sifatullahchowdhury.rokomari.newsview.adapter.ArticleCardRecyclerAdapter;
 import com.sifatullahchowdhury.rokomari.newsview.adapter.ArticleListRecyclerAdapter;
 import com.sifatullahchowdhury.rokomari.newsview.model.Article;
+import com.sifatullahchowdhury.rokomari.newsview.preference.PreferenceManager;
 import com.sifatullahchowdhury.rokomari.newsview.utility.Utility;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.sifatullahchowdhury.rokomari.newsview.utility.Utility.NEWS_OF_COUNTRY;
+import static com.sifatullahchowdhury.rokomari.newsview.utility.Utility.NEWS_OF_CNN;
+import static com.sifatullahchowdhury.rokomari.newsview.utility.Utility.NEWS_OF_MIRROR;
+import static com.sifatullahchowdhury.rokomari.newsview.utility.Utility.NEWS_OF_SOURCE;
+import static com.sifatullahchowdhury.rokomari.newsview.utility.Utility.NEWS_OF_SPORTS;
+import static com.sifatullahchowdhury.rokomari.newsview.utility.Utility.NEWS_OF_TECH;
+import static com.sifatullahchowdhury.rokomari.newsview.utility.Utility.NEWS_OF_TOPIC;
+import static com.sifatullahchowdhury.rokomari.newsview.utility.Utility.NEWS_OF_UK;
+import static com.sifatullahchowdhury.rokomari.newsview.utility.Utility.NEWS_OF_US;
 
 public class HomeActivity extends AppCompatActivity implements ArticleListContract.View,NavigationView.OnNavigationItemSelectedListener  {
 
     private static final String TAG = "HomeActivity";
-    DrawerLayout mDrawerLayout;
-    NavigationView navigationView;
-    GoogleSignInClient mGoogleSignInClient;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView navigationView;
+    private GoogleSignInClient mGoogleSignInClient;
 
     int toggle=1;
 
     private ArticleListPresenter articleListPresenter;
     private RecyclerView rvArticles;
     private RecyclerView rvArticles2;
+    private Button btn_us,btn_uk,btn_sports,btn_tech, btn_cnn,btn_mirror;
+    private LinearLayout btnContainer;
 
     private ProgressBar pbLoading;
 
@@ -61,16 +77,17 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        articleListPresenter = new ArticleListPresenter(this);
+
         getSupportActionBar().setTitle(getString(R.string.latest_news));
         initUI();
         drawer();
-        GSO();
+        GSO();          //google sign in
 
 
 
-        articleListPresenter = new ArticleListPresenter(this);
 
-        articleListPresenter.requestDataFromServer();
+
     }
 
     private void initUI() {
@@ -82,11 +99,147 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
 
 
         pbLoading = findViewById(R.id.pb_loading);
+        btnContainer=findViewById(R.id.btn_container);
+
+        selectionButtonsListener();
+        loadArticles();
+
+
+
+    }
+
+    private void selectionButtonsListener(){
+
+
+        btn_us=findViewById(R.id.btn_us);
+        btn_uk=findViewById(R.id.btn_uk);
+        btn_sports=findViewById(R.id.btn_sports);
+        btn_tech=findViewById(R.id.btn_tech);
+        btn_mirror=findViewById(R.id.btn_mirror);
+        btn_cnn =findViewById(R.id.btn_cnn);
+
+
+        ArrayList<Button> buttons=new ArrayList<>();
+        buttons.add(btn_us);
+        buttons.add(btn_uk);
+        buttons.add(btn_sports);
+        buttons.add(btn_tech);
+        buttons.add(btn_mirror);
+        buttons.add(btn_cnn);
+
+        for (Button button:buttons)
+        {
+            button.setBackground(getResources().getDrawable(R.drawable.rounded_button));
+        }
+
+
+        String currentSelection=PreferenceManager.getCurrentSelection();
+        if (currentSelection.equals(NEWS_OF_US))
+            btn_us.setBackground(getResources().getDrawable(R.drawable.rounded_button_selected));
+        else if (currentSelection.equals(NEWS_OF_UK))
+            btn_uk.setBackground(getResources().getDrawable(R.drawable.rounded_button_selected));
+        else if (currentSelection.equals(NEWS_OF_SPORTS))
+            btn_sports.setBackground(getResources().getDrawable(R.drawable.rounded_button_selected));
+        else if (currentSelection.equals(NEWS_OF_TECH))
+            btn_tech.setBackground(getResources().getDrawable(R.drawable.rounded_button_selected));
+        else if (currentSelection.equals(NEWS_OF_CNN))
+            btn_cnn.setBackground(getResources().getDrawable(R.drawable.rounded_button_selected));
+        else if (currentSelection.equals(NEWS_OF_MIRROR))
+            btn_mirror.setBackground(getResources().getDrawable(R.drawable.rounded_button_selected));
+        else
+            btn_us.setBackground(getResources().getDrawable(R.drawable.rounded_button_selected));
+
+
+        btn_us.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferenceManager.setCurrentSelection(NEWS_OF_US);
+                loadArticles();
+
+
+            }
+        });
+
+        btn_uk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferenceManager.setCurrentSelection(NEWS_OF_UK);
+                loadArticles();
+
+            }
+        });
+
+        btn_sports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferenceManager.setCurrentSelection(Utility.NEWS_OF_SPORTS);
+                loadArticles();
+
+
+            }
+        });
+
+        btn_tech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferenceManager.setCurrentSelection(Utility.NEWS_OF_TECH);
+                loadArticles();
+
+
+            }
+        });
+
+        btn_cnn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferenceManager.setCurrentSelection(Utility.NEWS_OF_CNN);
+                loadArticles();
+
+
+            }
+        });
+
+        btn_mirror.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferenceManager.setCurrentSelection(Utility.NEWS_OF_MIRROR);
+                loadArticles();
+
+
+            }
+        });
+
 
 
     }
 
 
+
+
+    public void loadArticles(){
+        String currentSelection= PreferenceManager.getCurrentSelection();
+
+
+        if (currentSelection.equals(NEWS_OF_US))
+            articleListPresenter.requestDataFromServer(NEWS_OF_COUNTRY, NEWS_OF_US);
+
+        else if (currentSelection.equals(NEWS_OF_UK))
+
+            articleListPresenter.requestDataFromServer(NEWS_OF_COUNTRY,NEWS_OF_UK);
+
+        else if (currentSelection.equals(NEWS_OF_SPORTS))
+            articleListPresenter.requestDataFromServer(NEWS_OF_TOPIC,NEWS_OF_SPORTS);
+        else if (currentSelection.equals(NEWS_OF_TECH))
+            articleListPresenter.requestDataFromServer(NEWS_OF_TOPIC,NEWS_OF_TECH);
+        else if (currentSelection.equals(NEWS_OF_CNN))
+            articleListPresenter.requestDataFromServer(NEWS_OF_SOURCE, NEWS_OF_CNN);
+        else if (currentSelection.equals(NEWS_OF_MIRROR))
+            articleListPresenter.requestDataFromServer(NEWS_OF_SOURCE,NEWS_OF_MIRROR);
+        else
+            articleListPresenter.requestDataFromServer(NEWS_OF_COUNTRY,NEWS_OF_US);
+
+
+    }
 
 
     @Override
@@ -94,16 +247,25 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
 
         rvArticles.setVisibility(View.GONE);
         rvArticles2.setVisibility(View.GONE);
+        //btnContainer.setVisibility(View.GONE);
+        selectionButtonsListener();
        pbLoading.setVisibility(View.VISIBLE);
+       findViewById(R.id.anchor).setVisibility(View.GONE);
     }
 
     @Override
     public void hideProgress() {
 
        pbLoading.setVisibility(View.GONE);
+        btnContainer.setVisibility(View.VISIBLE);
 
        rvArticles.setVisibility(View.VISIBLE);
-       rvArticles2.setVisibility(View.VISIBLE);
+       if (toggle==1){
+           rvArticles2.setVisibility(View.VISIBLE);
+           findViewById(R.id.anchor).setVisibility(View.VISIBLE);
+
+       }
+
     }
 
     @Override
@@ -144,6 +306,7 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
             rvArticles2.setVisibility(View.GONE);
 
 
+
         }
 
         Log.e(TAG, String.valueOf(articles.size()));
@@ -177,8 +340,9 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
         switch (id) {
             case R.id.nav_home:
                 mDrawerLayout.closeDrawers();
-                articleListPresenter.requestDataFromServer();
 
+                PreferenceManager.setCurrentSelection(Utility.NEWS_OF_US);
+                loadArticles();
                 return true;
             case R.id.nav_about:
                 mDrawerLayout.closeDrawers();
@@ -228,7 +392,7 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
         switch (item.getItemId()) {
             case R.id.btn_reload:
 
-                articleListPresenter.requestDataFromServer();
+                loadArticles();
                 return true;
 
             case R.id.btn_search:
@@ -239,8 +403,8 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
                 if (toggle==1)
                 toggle=2;
                 else toggle=1;
-                articleListPresenter.requestDataFromServer();
 
+                loadArticles();
                 return true;
 
             default:
@@ -327,6 +491,8 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Utility.textDialog(this,Utility.getStringResource(R.string.google_sign_in),Utility.getStringResource(R.string.could_not_log),R.drawable.google);
+
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             updateUI(null);
         }

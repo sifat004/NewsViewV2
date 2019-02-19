@@ -52,13 +52,24 @@ public class ArticleListPresenter implements ArticleListContract.Presenter,Artic
 
 
     @Override
-    public void requestDataFromServer() {
+    public void requestDataFromServer(int type,String param) {
 
         if (articleListView != null) {
             articleListView.showProgress();
         }
-        articleListModel.getLatestArticlesOfCountry(this, Utility.getStringResource(R.string.US));
-        //articleListModel.getLatestArticlesOfSource(this, Utility.getStringResource(R.string.gurdian));
+
+
+        if (type==Utility.NEWS_OF_COUNTRY)
+        articleListModel.getLatestArticlesOfCountry(this, param);
+
+        else if (type==Utility.NEWS_OF_SOURCE)
+        articleListModel.getLatestArticlesOfSource(this, param);
+
+        else if (type==Utility.NEWS_OF_TOPIC)
+            articleListModel.getArticlesOfTopic(this, param);
+
+        else articleListModel.getLatestArticlesOfCountry(this, Utility.getStringResource(R.string.US));
+
 
     }
 }

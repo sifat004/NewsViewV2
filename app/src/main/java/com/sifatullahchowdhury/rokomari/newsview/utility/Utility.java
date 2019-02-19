@@ -24,6 +24,21 @@ public class Utility {
 
     public  static Context APP_CONTEXT = MyApplication.getAppContext();
     public static String NEWS_API_KEY = getStringResource(R.string.api_key);
+
+    public static final int NEWS_OF_COUNTRY=1;
+    public static final int NEWS_OF_SOURCE=2;
+    public static final int NEWS_OF_TOPIC=3;
+
+    public static final String NEWS_OF_US=getStringResource(R.string.US);
+    public static final String NEWS_OF_UK=getStringResource(R.string.UK);
+    public static final String NEWS_OF_SPORTS=getStringResource(R.string.sports);
+    public static final String NEWS_OF_TECH=getStringResource(R.string.tech);
+    public static final String NEWS_OF_CNN =getStringResource(R.string.cnn);
+    public static final String NEWS_OF_MIRROR=getStringResource(R.string.mirror);
+
+
+
+
     public static String getStringResource(int id){return APP_CONTEXT.getString(id);}
 
     public static void textDialog(Context context,String title,String content,int icon) {

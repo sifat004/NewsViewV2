@@ -18,7 +18,7 @@ import com.sifatullahchowdhury.rokomari.newsview.home_activity.HomeActivity;
 import com.sifatullahchowdhury.rokomari.newsview.preference.PreferenceManager;
 import com.sifatullahchowdhury.rokomari.newsview.R;
 
-public class IntroScreenActivity extends AppCompatActivity {
+public class PrimarySplashScreenActivity extends AppCompatActivity {
 
     LinearLayout layout_bars;
     TextView[] bottomBars;
@@ -132,13 +132,13 @@ public class IntroScreenActivity extends AppCompatActivity {
 
     private void launchMain() {
         PreferenceManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(IntroScreenActivity.this, HomeActivity.class));
+        startActivity(new Intent(PrimarySplashScreenActivity.this, HomeActivity.class));
         finish();
     }
 
     private void launchSecondarySplash() {
         PreferenceManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(IntroScreenActivity.this, SplashScreenActivity.class));
+        startActivity(new Intent(PrimarySplashScreenActivity.this, SecondarySplashScreenActivity.class));
         finish();
     }
 
