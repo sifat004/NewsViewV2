@@ -20,5 +20,16 @@ public class ShowArticleActivity extends AppCompatActivity {
         String contentUrl=intent.getStringExtra(getString(R.string.content_url));
 
         webView.loadUrl(contentUrl);
+
+        if (getSupportActionBar()!=null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        super.onBackPressed();
+        return true;
     }
 }

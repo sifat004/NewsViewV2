@@ -39,11 +39,15 @@
         <activity
             android:name=".show_full_article_activity.ShowArticleActivity"
             android:screenOrientation="portrait"
+            android:label="@string/Read_full_article"
+
 
             />
         <activity
             android:name=".trivia_activity.TriviaActivity"
             android:screenOrientation="portrait"
+            android:label="@string/trivia"
+
 
             />
 

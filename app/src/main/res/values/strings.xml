@@ -45,4 +45,6 @@
     <string name="want_to_see_a_trivia">Want to see a trivia? Choose one</string>
     <string name="your_trivia">Your trivia</string>
     <string name="news">News</string>
+    <string name="trivia">Trivia</string>
+    <string name="Read_full_article">Read full Article</string>
 </resources>

@@ -2,11 +2,14 @@ package com.sifatullahchowdhury.rokomari.newsview.trivia_activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.sifatullahchowdhury.rokomari.newsview.R;
+import com.sifatullahchowdhury.rokomari.newsview.utility.Utility;
 
 public class TriviaActivity extends AppCompatActivity implements TriviaContract.View {
 
@@ -35,7 +38,13 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
 
         progressBar=findViewById(R.id.pb_loading);
         tv_trivia=findViewById(R.id.tv_trivia);
-    }
+
+
+        if (getSupportActionBar()!=null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+}
 
     void loadData(){
 
@@ -83,4 +92,11 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
         super.onDestroy();
         presenter.onDestroy();
     }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        super.onBackPressed();
+        return true;
+    }
+
 }
