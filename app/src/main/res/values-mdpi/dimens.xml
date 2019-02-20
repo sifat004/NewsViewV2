@@ -1,0 +1,12 @@
+<resources>
+    <dimen name="intro_text">35dp</dimen>
+    <dimen name="article_title">12dp</dimen>
+    <dimen name="article_desc">8dp</dimen>
+    <dimen name="article_date">8dp</dimen>
+
+
+    <dimen name="article_title_popup">17dp</dimen>
+    <dimen name="article_desc_popup">12dp</dimen>
+    <dimen name="article_date_popup">10dp</dimen>
+    <dimen name="btn_radius">35dp</dimen>
+</resources>
