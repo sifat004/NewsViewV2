@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,6 +31,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.sifatullahchowdhury.rokomari.newsview.R;
 import com.sifatullahchowdhury.rokomari.newsview.adapter.ArticleCardRecyclerAdapter;
 import com.sifatullahchowdhury.rokomari.newsview.adapter.ArticleListRecyclerAdapter;
@@ -53,6 +59,8 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
     private DrawerLayout mDrawerLayout;
     private GoogleSignInClient mGoogleSignInClient;
     private ActionBarDrawerToggle mDrawerToggle;
+    private FirebaseAuth mAuth;
+
 
 
     int toggle = 1;
@@ -77,6 +85,7 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
         articleListPresenter = new ArticleListPresenter(this);
 
 
+        mAuth = FirebaseAuth.getInstance();
         getSupportActionBar().setTitle(getString(R.string.news));
         initUI();
         drawer();
@@ -91,6 +100,8 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
 
 
     }
+
+
 
     private void initUI() {
 
@@ -450,20 +461,43 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
 
     void GSO() {
 
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(account);
+
     }
 
     @Override
     public void signIn(GoogleSignInClient mGoogleSignInClient) {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
+
     }
+
+
+//    @SuppressLint("SetTextI18n")
+//    void updateUI(FirebaseUser account) {
+//
+//
+//        TextView logInfo = findViewById(R.id.log_in_info);
+//        if (account != null) {
+//            logInfo.setText(getString(R.string.logged_in_as) + " " + account.getDisplayName());
+//
+//        } else {
+//            logInfo.setText(R.string.not_logged_in);
+//
+//
+//        }
+//
+//    }
 
 
     @SuppressLint("SetTextI18n")
@@ -485,22 +519,55 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
 
 
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+
+    private void handleSignInResult(GoogleSignInAccount account) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+           // GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
 
             mDrawerLayout.closeDrawers();
             updateUI(account);
             Utility.textDialog(this, Utility.getStringResource(R.string.google_sign_in), Utility.getStringResource(R.string.logged_in_as) + " " + account.getDisplayName(), R.drawable.google);
 
-        } catch (ApiException e) {
+        } catch (Exception e) {
 
             Utility.textDialog(this, Utility.getStringResource(R.string.google_sign_in), Utility.getStringResource(R.string.could_not_log), R.drawable.google);
 
+            Log.e("gso",e.getMessage());
             updateUI(null);
         }
     }
+
+//    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+//        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+//
+//        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+//        mAuth.signInWithCredential(credential)
+//
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//
+//                        if (task.isSuccessful()) {
+//                            Log.d(TAG, "signInWithCredential:success");
+//                           FirebaseUser user = mAuth.getCurrentUser();
+//                            Utility.textDialog(HomeActivity.this, Utility.getStringResource(R.string.google_sign_in), Utility.getStringResource(R.string.logged_in_as) + " " + user.getDisplayName(), R.drawable.google);
+//                            mDrawerLayout.closeDrawers();
+//                            updateUI(user);
+//
+//
+//                        } else {
+//
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            Utility.textDialog(HomeActivity.this, Utility.getStringResource(R.string.google_sign_in), Utility.getStringResource(R.string.could_not_log), R.drawable.google);
+//
+//                           updateUI(null);
+//                        }
+//
+//                    }
+//                });
+//    }
 
     @Override
     public void signOut() {
@@ -519,6 +586,8 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
                     }
 
                 });
+
+        FirebaseAuth.getInstance().signOut();
     }
 
     private void revokeAccess() {
@@ -532,16 +601,22 @@ public class HomeActivity extends AppCompatActivity implements ArticleListContra
                 });
     }
 
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+               //firebaseAuthWithGoogle(account);
+                handleSignInResult(account);
+
+            } catch (ApiException e) {
+                Log.w(TAG, "Google sign in failed", e);
+            }
         }
     }
 
