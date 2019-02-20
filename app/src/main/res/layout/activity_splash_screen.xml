@@ -10,8 +10,8 @@
 
      <ImageView
     android:id="@+id/rokomari_logo"
-    android:layout_width="250dp"
-    android:layout_height="250dp"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
     android:src="@drawable/rokomari" />
@@ -25,7 +25,7 @@
     android:text="@string/demo_app"
     android:textColor="@color/active"
     android:fontFamily="@font/josefin"
-    android:textSize="40dp" />
+    android:textSize="@dimen/intro_text" />
 
 
 
